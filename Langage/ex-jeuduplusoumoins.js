@@ -9,3 +9,48 @@ et afficher si le nombre est plus grand ou plus petit
 chaque tour (Array sur MDN, ressemble à List Java)
  */
 
+const readline = require('readline');
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+const entierAlea = Math.floor(Math.random() * 101);
+var essais = [];
+
+function jouer() {
+
+    if (essais.length) {
+        console.log('Précédents essais : ' + essais.join(', '));
+    }
+
+    rl.question('Saisir un entier entre 0 et 100 : ', function(answer) {
+
+        var entierSaisi = Number.parseInt(answer);
+
+        if (isNaN(entierSaisi)) {
+            console.error('Il faut saisir un entier');
+            return jouer();
+        }
+
+        essais.push(entierSaisi);
+
+        if (entierAlea > entierSaisi) {
+            console.log('Plus grand');
+            return jouer();
+        }
+
+        if (entierAlea < entierSaisi) {
+            console.log('Plus petit');
+            return jouer();
+        }
+
+        console.log('Gagné');
+        rl.close();
+    });
+
+}
+
+jouer();
+
