@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Helloworld</title>
+    <script src="node_modules/angular/angular.js"></script>
+    <script>
+        var app = angular.module('app', []);
+        app.controller('ContactController', function($scope) {
+            $scope.prenom = '';
+            $scope.prenoms = [];
+
+            $scope.addPrenom = function() {
+                $scope.prenoms.push($scope.prenom);
+                $scope.prenom = '';
+            };
+        });
+    </script>
+</head>
+<body ng-controller="ContactController">
+    <div>
+        Prénom :
+        <input ng-model="prenom">
+        <button ng-click="addPrenom()">+</button>
+    </div>
+    <ul>
+        <li ng-repeat="prenom in prenoms track by $index">
+            {{prenom}}
+            <span ng-if="$first">1er</span>
+            <span ng-show="$last">Dernier</span>
+        </li>
+    </ul>
+</body>
+</html>
