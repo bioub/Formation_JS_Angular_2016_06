@@ -28,7 +28,7 @@
         console.log('Hello');
     }, 1000);
 
-    var addition = function addition(a, b) {
+    var addition = function (a, b) {
         return Number(a) + Number(b);
     };
 
