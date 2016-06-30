@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>AddressBook</title>
+</head>
+<body>
+    <div ng-controller="ContactListController">
+        <table>
+            <tr ng-repeat="contact in contacts">
+                <td>{{contact.prenom}} {{contact.nom}}</td>
+                <td>
+                    <a href="#" ng-click="afficher(contact)">Afficher</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div ng-controller="ContactShowController">
+        {{contactToShow.prenom}} {{contactToShow.nom}}
+    </div>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="app/contact/controllers/list.js"></script>
+    <script src="app/contact/controllers/show.js"></script>
+    <script src="app/app.js"></script>
+</body>
+</html>
