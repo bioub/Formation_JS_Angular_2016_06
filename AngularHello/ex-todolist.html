@@ -1,21 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="node_modules/angular/angular-csp.css">
 </head>
-<body>
-<!--
-Exercice TodoList :
-En s'inspirant de controller.html
-1 / Créer une TodoList qui créer des champs input
-2 / Ajouter un bouton sur la ligne pour supprimer
-la ligne
-3 / Ajouter une checkbox sur chaque ligne qui transforme
-la balise input de la ligne en balise span
-4 / Ajouter une checkbox pour tout cocher/décocher
-Indice pour 3 et 4 :
-regarder ngChecked dans la doc
--->
+<body ng-controller="TodoListController">
+    <div>
+        <input type="checkbox" ng-click="toggleAll()" ng-model="checkedAll">
+        Todo :
+        <input ng-model="todo">
+        <button ng-click="addTodo()">+</button>
+    </div>
+    <div ng-cloak>
+        <div ng-repeat="todo in todos">
+            <input type="checkbox" ng-model="todo.checked">
+            <input value="{{todo.value}}" ng-hide="todo.checked">
+            <span ng-show="todo.checked">{{todo.value}}</span>
+            <button ng-click="removeTodo($index)">-</button>
+        </div>
+    </div>
+    <script src="node_modules/angular/angular.js"></script>
+    <script>
+        (function() {
+            'use strict';
+
+            var app = angular.module('app', []);
+            app.controller('TodoListController', ['$scope', function($scope) {
+                $scope.todos = [{
+                    value: 'Acheter du pain',
+                    checked: false
+                }, {
+                    value: 'Organiser en fichier',
+                    checked: false
+                }];
+
+                $scope.addTodo = function() {
+                    $scope.todos.push({
+                        value: $scope.todo,
+                        checked: false
+                    });
+                    $scope.checkedAll = false;
+                };
+
+                $scope.removeTodo = function(i) {
+                    $scope.todos.splice(i, 1);
+                };
+
+                $scope.toggleAll = function() {
+                    $scope.todos.forEach(function(todo) {
+                        todo.checked = $scope.checkedAll;
+                    });
+                };
+            }]);
+        }());
+
+    </script>
 </body>
 </html>
