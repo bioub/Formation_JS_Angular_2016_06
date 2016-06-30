@@ -1,0 +1,30 @@
+<h2>Liste des contacts</h2>
+
+<style>
+    .ng-touched.ng-invalid {
+        border: 1px solid red;
+    }
+</style>
+
+<form name="contactForm" ng-submit="ajouter()" novalidate>
+    <div>
+        Prénom
+        <input type="text" name="prenom" ng-model="contact.prenom" required>
+        <span ng-show="contactForm.prenom.$touched && contactForm.prenom.$error.required">Le prénom est obligatoire</span>
+    </div>
+    <div>
+        Nom
+        <input type="text" name="nom" ng-model="contact.nom" required>
+    </div>
+    <div>
+        Email
+        <input type="email" name="email" ng-model="contact.email">
+    </div>
+    <div>
+        Téléphone
+        <input type="text" name="telephone" ng-model="contact.telephone">
+    </div>
+    <div>
+        <button type="submit">Ajouter</button>
+    </div>
+</form>

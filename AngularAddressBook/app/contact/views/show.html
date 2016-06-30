@@ -1,0 +1,20 @@
+<h2>Afficher un contact</h2>
+
+<table>
+    <tr>
+        <th>Prénom</th>
+        <td>{{contact.prenom}}</td>
+    </tr>
+    <tr>
+        <th>Nom</th>
+        <td>{{contact.nom}}</td>
+    </tr>
+    <tr ng-if="contact.email">
+        <th>Email</th>
+        <td>{{contact.email}}</td>
+    </tr>
+    <tr ng-if="contact.telephone">
+        <th>Téléphone</th>
+        <td>{{contact.telephone}}</td>
+    </tr>
+</table>

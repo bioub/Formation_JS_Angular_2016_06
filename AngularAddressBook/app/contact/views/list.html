@@ -1,0 +1,11 @@
+<h2>Liste des contacts</h2>
+
+<table>
+    <tr ng-repeat="contact in contacts">
+        <td>{{contact.prenom}} {{contact.nom}}</td>
+        <td>
+            <a href="#/contacts/{{contact.id}}">Afficher</a>
+            <a href="" ng-click="supprimer(contact)">Supprimer</a>
+        </td>
+    </tr>
+</table>

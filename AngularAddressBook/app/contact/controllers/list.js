@@ -1,15 +1,11 @@
-angular.module('contact.controllers.list', [])
-.controller('ContactListController', ['$scope', function($scope) {
-    $scope.contacts = [{
-        prenom: 'Jean',
-        nom: 'Dupont'
-    }, {
-        prenom: 'Eric',
-        nom: 'Martin'
-    }];
-    
-    $scope.afficher = function(contact) {
-        // TODO changer demain
-        $scope.$root.contactToShow = contact;
+angular.module('contact.controllers.list', [
+    'contact.services.contact'
+])
+.controller('ContactListController', ['$scope', 'ContactService', function($scope, ContactService) {
+
+    $scope.contacts = ContactService.query();
+
+    $scope.supprimer = function(contact) {
+        contact.$delete();
     };
 }]);
